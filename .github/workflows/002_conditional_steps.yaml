@@ -7,24 +7,24 @@ jobs:
   example_job:
     runs-on: ubuntu-latest
 
-  steps:
-    - name: will_succeed
-      run: |
-        echo "Will succeed"
-        exit 0
+    steps:
+      - name: will_succeed
+        run: |
+          echo "Will succeed"
+          exit 0
 
-    - name: run_on_success
-      if: ${{ success() }}
-      run: echo "Previous steps succeeded"
+      - name: run_on_success
+        if: ${{ success() }}
+        run: echo "Previous steps succeeded"
 
-    - name: will_fail
-      run: |
-        echo "Will fail"
-        exit 1
+      - name: will_fail
+        run: |
+          echo "Will fail"
+          exit 1
 
-    - name: wont_run
-      run: echo "never runs"
+      - name: wont_run
+        run: echo "never runs"
 
-    - name: run_on_failure
-      if: ${{ failure() }}
-      run: echo "Runs if failure"
+      - name: run_on_failure
+        if: ${{ failure() }}
+        run: echo "Runs if failure"
