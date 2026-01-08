@@ -1,4 +1,4 @@
-name: "002 Conditional steps"
+name: "02 Conditional steps"
 
 on:
   workflow_dispatch:
