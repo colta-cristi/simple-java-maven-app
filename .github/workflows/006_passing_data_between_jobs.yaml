@@ -1,0 +1,24 @@
+name: "06 Pass Data Between Jobs"
+
+on: "workflow_dispatch"
+
+jobs:
+  data-sender-job:
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Send data"
+        id: "data-sender"
+        run: |
+          echo "dog-name=Snowflake" >> $GITHUB_OUTPUT
+
+    outputs:
+      barfie: ${{data-sender.outputs.dog-name}}
+
+  data-receiver-job:
+    needs: ["data-sender-job"]
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Receive data"
+        run: echo ${{needs.data-sender-job.outputs.barfie}}

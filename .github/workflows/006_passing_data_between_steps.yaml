@@ -1,0 +1,14 @@
+name: "06 Pass Data Between Steps"
+
+on: "workflow_dispatch"
+
+jobs:
+  example_job:
+    runs-on: "ubuntu-latest"
+    steps:
+      - name: "Send data"
+        id: "data-sender"
+        run: echo "my-greeting=Hello, there" >> $GITHUB_OUTPUT
+
+      - name: "Receive data"
+        run: echo ${{steps.data-sender.outputs.my-greeting}}
