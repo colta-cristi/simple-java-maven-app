@@ -13,7 +13,7 @@ jobs:
           echo "dog-name=Snowflake" >> $GITHUB_OUTPUT
 
     outputs:
-      barfie: ${{data-sender.outputs.dog-name}}
+      barfie: ${{steps.data-sender.outputs.dog-name}}
 
   data-receiver-job:
     needs: ["data-sender-job"]
@@ -21,4 +21,4 @@ jobs:
 
     steps:
       - name: "Receive data"
-        run: echo ${{needs.data-sender-job.outputs.barfie}}
+        run: echo "Come here, ${{needs.data-sender-job.outputs.barfie}}!"
